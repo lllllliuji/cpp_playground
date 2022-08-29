@@ -1,17 +1,15 @@
 #ifndef Condition_variables_h_
 #define Condition_variables_h_
 
-#include <mutex>
 #include <condition_variable>
+#include <mutex>
 #include <queue>
 
 std::mutex mut;
 std::queue<data_chunk> data_queue;
 std::condition_variable data_cond;
-void data_preparation_thread()
-{
-    while (more_data_to_prepare())
-    {
+void data_preparation_thread() {
+    while (more_data_to_prepare()) {
         data_chunk const data = prepare_data();
         {
             std::lock_guard<std::mutex> lk(mut);
@@ -20,12 +18,10 @@ void data_preparation_thread()
         data_cond.notify_one();
     }
 }
-void data_processing_thread()
-{
-    while (true)
-    {
+void data_processing_thread() {
+    while (true) {
         std::unique_lock<std::mutex> lk(mut);
-        data_cond.wait(lk, []{ return !data_queue.empty();});
+        data_cond.wait(lk, [] { return !data_queue.empty(); });
         data_chunk data = data_queue.front();
         data_queue.pop();
         lk.unlock();
