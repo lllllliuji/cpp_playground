@@ -1,7 +1,7 @@
-#ifndef thread_safe_queue_2_h_
-#define thread_safe_queue_2_h_
+#ifndef Thread_safe_queue_2_h_
+#define Thread_safe_queue_2_h_
 
-#include "test.h"
+#include "base.h"
 
 template <typename T>
 class threadsafe_queue_2 {
@@ -56,9 +56,9 @@ class threadsafe_queue_2 {
     }
 
    public:
-    threadsafe_queue() : head(new node), tail(head.get()) {}
-    threadsafe_queue(const threadsafe_queue& other) = delete;
-    threadsafe_queue& operator=(const threadsafe_queue& other) = delete;
+    threadsafe_queue_2() : head(new node), tail(head.get()) {}
+    threadsafe_queue_2(const threadsafe_queue_2& other) = delete;
+    threadsafe_queue_2& operator=(const threadsafe_queue_2& other) = delete;
 
     std::shared_ptr<T> try_pop() {
         std::unique_ptr<node> old_head = try_pop_head();
