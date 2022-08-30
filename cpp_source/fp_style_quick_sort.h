@@ -1,14 +1,12 @@
 #ifndef Fp_style_quick_sort
 #define Fp_style_quick_sort
 
-#include <list>
 #include <algorithm>
+#include <list>
 
 template <typename T>
-std::list<T> sequential_quick_sort(std::list<T> input)
-{
-    if (input.empty())
-    {
+std::list<T> sequential_quick_sort(std::list<T> input) {
+    if (input.empty()) {
         return input;
     }
     std::list<T> result;
@@ -25,10 +23,8 @@ std::list<T> sequential_quick_sort(std::list<T> input)
 }
 
 template <typename T>
-std::list<T> parallel_quick_sort(std::list<T> input)
-{
-    if (input.empty())
-    {
+std::list<T> parallel_quick_sort(std::list<T> input) {
+    if (input.empty()) {
         return input;
     }
     std::list<T> result;
@@ -44,7 +40,6 @@ std::list<T> parallel_quick_sort(std::list<T> input)
     return result;
 }
 
-
 void fp_quick_sort_test() {
     // initializing lists
     std::list<int> l1 = {1, 2, 3};
@@ -56,20 +51,17 @@ void fp_quick_sort_test() {
 
     // at the beginning of l1
     std::cout << "list l1 after splice operation" << std::endl;
-    for (auto x : l1)
-        std::cout << x << " ";
+    for (auto x : l1) std::cout << x << " ";
 
     // transfer all the elements of l1
     l3.splice(l3.end(), l1);
 
     // at the end of l3
     std::cout << "\nlist l3 after splice operation" << std::endl;
-    for (auto x : l3)
-        std::cout << x << " ";
+    for (auto x : l3) std::cout << x << " ";
     auto result = parallel_quick_sort(l3);
     std::cout << std::endl;
-    for (auto &x : result)
-    {
+    for (auto &x : result) {
         std::cout << x << " ";
     }
 }

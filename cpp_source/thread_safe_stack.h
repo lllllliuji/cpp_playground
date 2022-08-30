@@ -1,10 +1,7 @@
 #ifndef Thread_safe_stack_
 #define Thread_safe_stack_
 
-#include <exception>
-#include <memory>
-#include <mutex>
-#include <stack>
+#include "base.h"
 
 
 struct empty_stack: std::exception {
