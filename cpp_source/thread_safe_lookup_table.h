@@ -8,7 +8,6 @@ class threadsafe_lookup_table {
    private:
     class bucket_type {
        private:
-       private:
         typedef std::pair<Key, Value> bucket_value;
         typedef std::list<bucket_value> bucket_data;
         typedef typename bucket_data::iterator bucket_iterator;
@@ -16,6 +15,7 @@ class threadsafe_lookup_table {
         bucket_data data;
         mutable std::shared_mutex mutex;
         bucket_iterator find_entry_for(Key const& key) const {
+            //bug fix:类型转换错误
             return std::find_if(data.begin(), data.end(), [&](bucket_value const& item) { return item.first == key; });
         }
 
@@ -68,6 +68,20 @@ class threadsafe_lookup_table {
         get_bucket(key).add_or_update_mapping(key, value);
     }
     void remove_mapping(Key const& key) { get_bucket(key).remove_mapping(key); }
+
+    std::map<Key, Value> get_map() const {
+        std::vector<std::unique_lock<std::shared_mutex> > locks;
+        for (unsigned i = 0; i < buckets.size(); ++i) {
+            locks.push_back(std::unique_lock<std::shared_mutex>(buckets[i].mutex));
+        }
+        std::map<Key, Value> res;
+        for (unsigned i = 0; i < buckets.size(); ++i) {
+            for (auto it = buckets[i].data.begin(); it != buckets[i].data.end(); ++it) {
+                res.insert(*it);
+            }
+        }
+        return res;
+    }
 };
 
 #endif
