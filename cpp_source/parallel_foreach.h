@@ -2,7 +2,7 @@
 #define Parallel_foreach_h_
 
 #include "base.h"
-
+#include "join_threads.h"
 template <typename Iterator, typename Func>
 void parallel_for_each(Iterator first, Iterator last, Func f) {
     unsigned long const length = std::distance(first, last);
