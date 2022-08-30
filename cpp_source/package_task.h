@@ -1,41 +1,34 @@
 #ifndef Package_task_h_
 #define Package_task_h_
 
-#include <mutex>
-#include <iostream>
-#include <future>
-#include <functional>
-#include <thread>
-#include <deque>
 #include <algorithm>
-#include <numeric>
-#include <vector>
 #include <chrono>
+#include <deque>
+#include <functional>
+#include <future>
+#include <iostream>
+#include <mutex>
+#include <numeric>
 #include <set>
+#include <thread>
+#include <vector>
 
 std::vector<int> nums;
 
 template <typename Iterator, typename T>
-T my_accumulate(Iterator first, Iterator last, T init_value)
-{
+T my_accumulate(Iterator first, Iterator last, T init_value) {
     return std::accumulate(first, last, init_value);
 }
 
 template <typename Iterator, typename T>
-struct accumulate_block
-{
-    void operator()(Iterator first, Iterator last, T &result)
-    {
-        result = std::accumulate(first, last, result);
-    }
+struct accumulate_block {
+    void operator()(Iterator first, Iterator last, T &result) { result = std::accumulate(first, last, result); }
 };
 
 template <typename Iterator, typename T>
-T parallel_accumulate(Iterator first, Iterator last, T init_value)
-{
+T parallel_accumulate(Iterator first, Iterator last, T init_value) {
     unsigned long const length = std::distance(first, last);
-    if (!length)
-        return init_value;
+    if (!length) return init_value;
 
     unsigned long const min_per_thread = 10000;
     unsigned long const max_threads = (length + min_per_thread - 1) / min_per_thread;
@@ -47,16 +40,14 @@ T parallel_accumulate(Iterator first, Iterator last, T init_value)
     std::vector<std::thread> threads(num_threads - 1);
 
     Iterator block_start = first;
-    for (unsigned long i = 0; i < (num_threads - 1); ++i)
-    {
+    for (unsigned long i = 0; i < (num_threads - 1); ++i) {
         Iterator block_end = block_start;
         std::advance(block_end, block_size);
         threads[i] = std::thread(accumulate_block<Iterator, T>(), block_start, block_end, std::ref(results[i]));
         block_start = block_end;
     }
     accumulate_block<Iterator, T>()(block_start, last, results[num_threads - 1]);
-    for (auto &entry : threads)
-    {
+    for (auto &entry : threads) {
         entry.join();
     }
     return std::accumulate(results.begin(), results.end(), init_value);
@@ -92,10 +83,8 @@ T parallel_accumulate(Iterator first, Iterator last, T init_value)
 
 // }
 
-void test_package_task()
-{
-    for (int i = 0; i < 100000000; i++)
-    {
+void test_package_task() {
+    for (int i = 0; i < 100000000; i++) {
         nums.emplace_back(std::rand());
     }
 

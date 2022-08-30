@@ -3,11 +3,22 @@
 int main() {
     int a = 0;
     std::cout << a << std::endl;
-    threadsafe_lookup_table<std::string, int> t;
     std::string h("hello");
-    t.add_or_update_mapping(h, 101);
-    std::cout << t.value_for(h, 0) << std::endl;
-    
+    std::cout << std::hash<std::string>()(h) << std::endl;
+
+    std::list<std::pair<std::string, int>> bucket;
+    for (int i = 0; i < 100; i++) {
+        auto p = std::make_pair(std::to_string(i), i);
+        bucket.push_back(std::move(p));
+    }
+    auto it = std::find_if(bucket.begin(), bucket.end(), [](const auto &key) {
+        return key.first == std::to_string(55);
+    });
+    it->second = 66;
+    for (const auto& item : bucket) {
+        if (item.first == std::to_string(55)) 
+        std::cout << item.first << " " << item.second << std::endl;
+    }
     return 0;
 }
 
