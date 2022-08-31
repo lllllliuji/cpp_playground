@@ -47,6 +47,7 @@ class A {
         }
         std::cout << std::endl;
     }
+    
 };
 
 #endif

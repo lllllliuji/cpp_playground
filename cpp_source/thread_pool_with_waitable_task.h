@@ -4,6 +4,8 @@
 #include "base.h"
 #include "join_threads.h"
 #include "thread_safe_queue.h"
+
+//有bug
 class function_wrapper {
     struct impl_base {
         virtual void call() = 0;
