@@ -4,6 +4,7 @@
 
 
 #include "base.h"
+#include "copy_control.h"
 #include "hello.h"
 #include "thread_guard.h"
 #include "test_mutex.h"
@@ -22,4 +23,5 @@
 #include "thread_safe_lookup_table.h"
 #include "thread_safe_list.h"
 #include "simple_thread_pool.h"
+// #include "thread_pool_with_waitable_task.h"
 #endif
