@@ -23,6 +23,7 @@
 #include <set>
 #include <numeric>
 #include <execution>
+#include <cstring>
 
 
 #endif

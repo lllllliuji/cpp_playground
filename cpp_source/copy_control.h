@@ -16,22 +16,27 @@ class A {
         }
     }
     A(const A& a) {
+        std::cout << "copy constructor" << std::endl;
         if (this == &a) return;
         len = a.len;
-        *p = *(a.p);
+        p.reset(std::make_unique<std::vector<int>>(*a.p).release());
     }
     A(A&& a) {
+        std::cout << "move constructor" << std::endl;
         if (this == &a) return;
         len = a.len;
         p = std::move(a.p);
     }
     A& operator=(const A& a) noexcept {
+        std::cout << "assign" << std::endl;
+        std::cout << "here" << std::endl;
         if (this == &a) return *this;
         len = a.len;
-        *p = *(a.p);
+        p.reset(std::make_unique<std::vector<int>>(*a.p).release());
         return *this;
     }
     A& operator=(A&& a) noexcept {
+        std::cout << "move assign" << std::endl;
         if (this == &a) return *this;
         len = a.len;
         p = std::move(a.p);
@@ -47,7 +52,19 @@ class A {
         }
         std::cout << std::endl;
     }
-    
+    void reverse() {
+        if (!p) return;
+        std::reverse((*p).begin(), (*p).end());
+    }
+    int& at(int index) {
+        return p->at(index);
+    }
+    int &front() {
+        return p->front();
+    }
+    int &back() {
+        return p->back();
+    }
 };
 
 #endif
