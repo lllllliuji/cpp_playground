@@ -5,9 +5,7 @@
 
 template <typename Iterator, typename MatchType>
 Iterator parallel_find(Iterator first, Iterator last, MatchType match) {
-    struct find_element
-
-    {
+    struct find_element {
         void operator()(Iterator begin, Iterator end, MatchType match, std::promise<Iterator>* result,
                         std::atomic<bool>* done_flag) {
             try {

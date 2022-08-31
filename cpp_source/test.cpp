@@ -1,16 +1,32 @@
 #include "test.h"
 
 int main() {
-    std::list<std::string> strs;
+   simple_thread_pool pool;
+   std::mutex mut;
+   auto func = [&]() {
+       auto id = std::this_thread::get_id();
+       auto start = std::chrono::steady_clock::now();
+       int cnt = 10;
+       for (int i = 0; i < 1000000; i++) {
+           cnt = cnt * 10 % 100000;
+       }
+       auto end = std::chrono::steady_clock::now();
 
+       std::chrono::duration<double> cost = end - start;
+       {
+           std::lock_guard<std::mutex> lk(mut);
+           std::cout << id << " runs for " << cost.count() << "s" << std::endl;
+       }
+       
+   };
+    
     for (int i = 0; i < 20; i++) {
-        strs.emplace_back(std::to_string(std::rand() % 100000));
+        pool.submit(func);
     }
-    auto result = parallel_quick_sort(strs);
-    for (const auto& item : result) {
-        std::cout << item << " ";
-    }
-
+    long long cnt = 0;
+    // for (;;) {
+    //     cnt ++;
+    // }
     return 0;
 }
 
