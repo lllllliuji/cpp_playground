@@ -3,6 +3,7 @@
 
 #include "base.h"
 #include "thread_safe_queue.h"
+#include "join_threads.h"
 class function_wrapper {
     struct impl_base {
         virtual void call() = 0;

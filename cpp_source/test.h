@@ -24,4 +24,5 @@
 #include "thread_safe_list.h"
 #include "simple_thread_pool.h"
 // #include "thread_pool_with_waitable_task.h"
+#include "friend.h"
 #endif
