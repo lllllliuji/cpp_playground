@@ -1,7 +1,10 @@
 #include "test.h"
 
+#include "extendible_hashtable.h"
+
 int main() {
-    std::cout << "hello world" << std::endl;
     
+    // extendibleHashtableTest();
+    extendibleHashTableConcurrentTest();
     return 0;
 }

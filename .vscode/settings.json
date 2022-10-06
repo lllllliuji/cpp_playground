@@ -58,6 +58,7 @@
         "condition_variable": "cpp",
         "list": "cpp",
         "shared_mutex": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "cstring": "cpp"
     }
 }
