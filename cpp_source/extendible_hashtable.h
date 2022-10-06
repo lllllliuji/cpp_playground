@@ -54,11 +54,6 @@ class Bucket {
     std::list<std::pair<int, std::string>> list_;
     size_t depth_;
     size_t size_;
-
-   private:
-    auto find_iter(const int& key) {
-        return std::find_if(list_.begin(), list_.end(), [&](auto&& item) { return item.first == key; });
-    }
 };
 class extendible_hashtable {
    public:
@@ -97,7 +92,7 @@ class extendible_hashtable {
                 }
                 global_depth_++;
             }
-            int mask = 1 << target_bucket->getDepth();
+            int mask = 1 << local_depth;
             auto new_bucket = std::make_shared<Bucket>(bucket_size_, local_depth + 1);
             auto& new_list = new_bucket->getItems();
             auto& old_list = target_bucket->getItems();
@@ -196,5 +191,4 @@ void extendibleHashTableConcurrentTest() {
             assert(val == std::to_string(i));
         }
     }
-
 }

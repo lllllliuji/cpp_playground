@@ -4,7 +4,7 @@
 
 int main() {
     
-    // extendibleHashtableTest();
+    extendibleHashtableTest();
     extendibleHashTableConcurrentTest();
     return 0;
 }
