@@ -8,5 +8,8 @@ int main() {
     std::chrono::nanoseconds x = end - now;
     std::cout << x.count() << std::endl;
     int64_t t = now.time_since_epoch().count();
+    std::cout << t << std::endl;
+    std::cout << INT64_MAX << std::endl;
+    std::cout << INT64_MIN << std::endl;
     return 0;
 }
