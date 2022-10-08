@@ -59,6 +59,7 @@
         "list": "cpp",
         "shared_mutex": "cpp",
         "chrono": "cpp",
-        "cstring": "cpp"
+        "cstring": "cpp",
+        "fstream": "cpp"
     }
 }

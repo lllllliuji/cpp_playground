@@ -14,7 +14,7 @@ class LRUKReplacer {
         std::weak_ptr<DLinkedNode> prev_;
         std::deque<std::chrono::system_clock::rep> records_;
 
-        DLinkedNode(size_t k) : k_(k), is_evictable_(true) {}
+        DLinkedNode(size_t k) : k_(k), is_evictable_(false) { update(); }
 
         void update() { records_.emplace_back(std::chrono::system_clock::now().time_since_epoch().count()); }
 
@@ -60,7 +60,8 @@ class LRUKReplacer {
             for (ptr = head_->next_; ptr != tail_; ptr = ptr->next_) {
                 if (ptr->getKDis() > node->getKDis()) {
                     break;
-                } else if (ptr->getKDis() == node->getKDis() && ptr->records_.front() < node->records_.front()) {
+                }
+                if (ptr->getKDis() == node->getKDis() && ptr->records_.back() <= node->records_.back()) {
                     break;
                 }
             }
@@ -119,11 +120,11 @@ class LRUKReplacer {
             node->id_ = frame_id;
             list->insertNode(node);
             LRUCache[frame_id] = node;
-            curr_size_++;
+        } else {
+            LRUCache[frame_id]->update();
+            list->removeNode(LRUCache[frame_id]);
+            list->insertNode(LRUCache[frame_id]);
         }
-        LRUCache[frame_id]->update();
-        list->removeNode(LRUCache[frame_id]);
-        list->insertNode(LRUCache[frame_id]);
     }
 
     void SetEvictable(frame_id_t frame_id, bool set_evictable) {

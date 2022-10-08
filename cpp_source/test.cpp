@@ -1,10 +1,10 @@
 #include "test.h"
-
-#include "extendible_hashtable.h"
-
 int main() {
-    
-    extendibleHashtableTest();
-    extendibleHashTableConcurrentTest();
+    std::ifstream infile("./clock_test.cpp");
+    std::string str;
+    while (infile.good()) {
+        std::getline(infile, str);
+        std::cout << str << std::endl;
+    }
     return 0;
 }
