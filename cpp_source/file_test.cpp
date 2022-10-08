@@ -1,9 +1,11 @@
-#include "base.h"
+#include <iostream>
+#include <fstream>
+
 int main() {
-    std::ifstream infile("./clock_test.cpp");
+    std::ifstream file("./hello.cpp");
     std::string str;
-    while (infile.good()) {
-        std::getline(infile, str);
+    while (file.good()) {
+        std::getline(file, str);
         std::cout << str << std::endl;
     }
     return 0;
