@@ -5,45 +5,50 @@
 class Address;
 class PrintAddr;
 class Student {
-public:
-    void showAddr(Address*);
+   public:
+    void showAddr(Address *);
     Student(std::string, int, double);
-public:
+
+   public:
     friend void show(Student *stu);
-private:
+
+   private:
     std::string name;
     int age;
     double score;
 };
 
 class Address {
-public: 
+   public:
     Address(std::string, std::string, std::string);
-public:
+
+   public:
     friend class PrintAddr;
-    friend void Student::showAddr(Address*);
-private:
+    friend void Student::showAddr(Address *);
+
+   private:
     std::string province;
     std::string city;
     std::string distrinct;
 };
 
 class PrintAddr {
-public:
-    void print(Address* addr);
+   public:
+    void print(Address *addr);
 };
 
-//Student成员函数实现
-Student::Student(std::string _name, int _age, double _score): name(_name), age(_age), score(_score) {};
+// Student成员函数实现
+Student::Student(std::string _name, int _age, double _score) : name(_name), age(_age), score(_score){};
 //将student的成员函数声明为address的友元函数
 void Student::showAddr(Address *addr) {
     std::cout << "address: " << addr->province << " " << addr->city << " " << addr->distrinct << std::endl;
 }
 
-//Adress成员函数实现
-Address::Address(std::string _province, std::string _city, std::string _distrinct): province(_province), city(_city), distrinct(_distrinct) {}
+// Adress成员函数实现
+Address::Address(std::string _province, std::string _city, std::string _distrinct)
+    : province(_province), city(_city), distrinct(_distrinct) {}
 
-//PrintAddress成员函数实现
+// PrintAddress成员函数实现
 void PrintAddr::print(Address *addr) {
     std::cout << "address: " << addr->province << " " << addr->city << " " << addr->distrinct << std::endl;
 }
@@ -52,13 +57,11 @@ void show(Student *stu) {
     std::cout << "name: " << stu->name << " age: " << stu->age << " score: " << stu->score << std::endl;
 }
 
-
-
 void friend_function_test() {
     Student stu("小明", 15, 90.6);
     show(&stu);  //调用友元函数
     Student *pstu = new Student("李磊", 16, 80.5);
-    show(pstu);  
+    show(pstu);
 
     Address addr("陕西", "西安", "雁塔");
     stu.showAddr(&addr);
