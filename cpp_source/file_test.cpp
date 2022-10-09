@@ -2,11 +2,14 @@
 #include <fstream>
 
 int main() {
-    std::ifstream file("./hello.cpp");
+    std::ifstream infile("tmp.cpp");
+    std::ofstream outfile("buffer_pool_manager.cpp");
     std::string str;
-    while (file.good()) {
-        std::getline(file, str);
-        std::cout << str << std::endl;
+    while (infile.good()) {
+        std::getline(infile, str);
+        str.erase(str.begin());
+        str.erase(str.begin());
+        outfile << str << std::endl;
     }
     return 0;
 }
