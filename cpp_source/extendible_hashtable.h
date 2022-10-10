@@ -7,6 +7,8 @@
 #include <mutex>
 #include <utility>
 #include <vector>
+#include <thread>
+#include <assert.h>
 
 class Bucket {
    public:
