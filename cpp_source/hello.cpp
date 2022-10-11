@@ -1,6 +1,7 @@
 #include <iostream>
 
-int main () {
-    std::cout << "hello world" << std::endl;
+int main() {
     return 0;
 }
+
+int fun() { return 0; }

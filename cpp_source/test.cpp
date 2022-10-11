@@ -1,6 +1,6 @@
 #include "test.h"
-#include "extendible_hashtable.h"
+#include "lru.h"
 int main() {
-    extendibleHashtableTest();
+    lru_test();
     return 0;
 }
