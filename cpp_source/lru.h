@@ -4,14 +4,14 @@
 #include <list>
 #include <mutex>
 #include <unordered_map>
-// doesn't work
 template <typename K, typename V>
 class LRU {
    private:
     size_t size_;
     std::mutex latch_;
     std::list<std::pair<K, V>> list_;
-    std::unordered_map<K, std::list<std::pair<K, V>>::iterator> map_;
+    // typedef typename std::list<std::pair<K, V>>::iterator Iterator;
+    std::unordered_map<K, typename std::list<std::pair<K, V>>::iterator> map_;
 
    public:
     LRU(size_t sz) : size_(sz) {}
@@ -32,6 +32,7 @@ auto LRU<K, V>::Evict() -> bool {
     auto item = list_.back();
     list_.pop_back();
     map_.erase(item.first);
+    return true;
 }
 
 template <typename K, typename V>
