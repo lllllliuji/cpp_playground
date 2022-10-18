@@ -4,8 +4,8 @@
 #include "base.h"
 class A {
    private:
-    std::unique_ptr<std::vector<int>> p;
     int len;
+    std::unique_ptr<std::vector<int>> p;
 
    public:
     A() : len(0) { p = std::make_unique<std::vector<int>>(); };

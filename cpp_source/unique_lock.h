@@ -5,6 +5,7 @@
 #include <thread>
 
 class some_object {};
+void my_swap(some_object&, some_object&);
 class unique_lock_example {
    private:
     some_object some_detail;
@@ -17,10 +18,9 @@ class unique_lock_example {
         std::unique_lock<std::mutex> lock_a(lhs.m, std::defer_lock);
         std::unique_lock<std::mutex> lock_b(rhs.m, std::defer_lock);
         std::lock(lock_a, lock_b);
-        swap(lhs.some_detail, rhs.some_detail);
+        my_swap(lhs.some_detail, rhs.some_detail);
     }
 };
-void swap(some_object&, some_object&);
 
 // Transferring mutex ownership between scopes
 void prepare_data();
