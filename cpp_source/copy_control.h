@@ -56,15 +56,9 @@ class A {
         if (!p) return;
         std::reverse((*p).begin(), (*p).end());
     }
-    int& at(int index) {
-        return p->at(index);
-    }
-    int &front() {
-        return p->front();
-    }
-    int &back() {
-        return p->back();
-    }
+    int& at(int index) { return p->at(index); }
+    int& front() { return p->front(); }
+    int& back() { return p->back(); }
 };
 
 #endif
