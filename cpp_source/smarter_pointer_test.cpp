@@ -26,5 +26,10 @@ int main() {
         auto w = wPtr.lock();
         w->print();
     }
+    std::shared_ptr<A> ptr = std::make_shared<A>(19);
+    std::cout << ptr.use_count() << std::endl;
+    auto aptr = std::move(ptr);
+    std::cout << ptr.use_count() << std::endl;
+    aptr->print();
     return 0;
 }
