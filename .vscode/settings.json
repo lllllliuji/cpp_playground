@@ -60,6 +60,8 @@
         "shared_mutex": "cpp",
         "chrono": "cpp",
         "cstring": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "bitset": "cpp",
+        "regex": "cpp"
     }
 }

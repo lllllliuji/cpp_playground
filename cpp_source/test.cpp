@@ -58,5 +58,9 @@ int main() {
     double b[10] = {0, 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9};
     c.print(a, 10);
     c.print(b, 10);
+
+    int v = 0;
+    std::cout << v << std::endl;
+    RegexTest();
     return 0;
 }
