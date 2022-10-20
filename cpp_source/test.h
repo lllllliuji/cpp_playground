@@ -26,4 +26,7 @@
 // #include "thread_pool_with_waitable_task.h"
 #include "friend.h"
 #include "regex.h"
+#include "page.h"
+#include "template.h"
+
 #endif
