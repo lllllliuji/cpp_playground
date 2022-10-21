@@ -55,5 +55,10 @@ void RandTest() {
     }
     std::cout << std::endl;
 }
-
+int Rand(int low, int high) {
+    std::random_device rd;
+    std::default_random_engine e(rd());
+    std::uniform_int_distribution<int> u(low, high);
+    return u(e);
+}
 #endif
