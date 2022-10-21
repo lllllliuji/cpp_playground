@@ -28,5 +28,6 @@
 // #include "regex.h"
 // #include "page.h"
 // #include "template.h"
+#include "random.h"
 
 #endif
