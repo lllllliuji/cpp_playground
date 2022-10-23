@@ -62,6 +62,7 @@
         "cstring": "cpp",
         "fstream": "cpp",
         "bitset": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "optional": "cpp"
     }
 }
