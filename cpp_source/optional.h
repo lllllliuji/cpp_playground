@@ -22,6 +22,9 @@ auto create_ref(bool b) {
 }
 
 void optional_test() {
+    std::optional<std::string> op_str = std::make_optional<std::string>("hello");
+    op_str.reset();
+    std::cout << "op_str: " << op_str.value_or("world") << std::endl;
     std::cout << "create(false) returned " << create(false).value_or("empty") << '\n';
 
     // optional-returning factory functions are usable as conditions of while and if
