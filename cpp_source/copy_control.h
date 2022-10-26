@@ -28,8 +28,7 @@ class A {
         p = std::move(a.p);
     }
     A& operator=(const A& a) noexcept {
-        std::cout << "assign" << std::endl;
-        std::cout << "here" << std::endl;
+        std::cout << "copy assign" << std::endl;
         if (this == &a) return *this;
         len = a.len;
         p.reset(std::make_unique<std::vector<int>>(*a.p).release());
@@ -66,5 +65,5 @@ void copy_control_test() {
     auto b = std::move(a);
     A c;
     c = std::move(b);
-} 
+}
 #endif
