@@ -1,5 +1,7 @@
-#include <memory>
 #include <iostream>
+#include <memory>
+#include <vector>
+
 class A {
    public:
     int a_;
@@ -31,5 +33,11 @@ int main() {
     auto aptr = std::move(ptr);
     std::cout << ptr.use_count() << std::endl;
     aptr->print();
+
+    std::unique_ptr<A> ua = std::make_unique<A>(130);
+    using AItem = std::pair<int, std::unique_ptr<A>>;
+    std::vector<AItem> vec;
+    vec.emplace_back(std::make_pair(0, std::move(ua)));
+    vec.back().second->print();
     return 0;
 }
