@@ -1,10 +1,8 @@
 #ifndef Test_h_
 #define Test_h_
 
-
-
 #include "base.h"
-// #include "copy_control.h"
+#include "copy_control.h"
 // #include "hello.h"
 // #include "thread_guard.h"
 // #include "test_mutex.h"

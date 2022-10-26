@@ -61,4 +61,10 @@ class A {
     int& back() { return p->back(); }
 };
 
+void copy_control_test() {
+    A a;
+    auto b = std::move(a);
+    A c;
+    c = std::move(b);
+} 
 #endif
