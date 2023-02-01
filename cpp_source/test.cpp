@@ -1,5 +1,6 @@
 #include "test.h"
 int main() {
-    flexible_array_test();
+    // UpperBoundTest();
+    LowerBoundTest();
     return 0;
 }

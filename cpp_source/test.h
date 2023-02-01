@@ -29,5 +29,6 @@
 #include "random.h"
 // #include "optional.h"
 #include "flexible_array.h"
+#include "binary_serach.h"
 
 #endif
