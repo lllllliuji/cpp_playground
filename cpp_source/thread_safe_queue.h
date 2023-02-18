@@ -5,6 +5,8 @@
 #include <memory>
 #include <mutex>
 #include <queue>
+#include <future>
+#include <assert.h>
 template <typename T>
 class threadsafe_queue {
    private:
