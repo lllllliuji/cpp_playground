@@ -1,8 +1,8 @@
-#include <iostream>
 #include <fstream>
-
+#include <iostream>
+#include <string>
 int main() {
-    std::ifstream infile("input.txt");
+    std::ifstream infile("/autograder/source/bustub/test/storage/grading_b_plus_tree_checkpoint_2_concurrent_test.cpp");
     std::ofstream outfile("output.txt");
     std::string str;
     while (infile.good()) {
