@@ -1,8 +1,10 @@
 #ifndef Random_h_
 #define Random_h_
 
+#include <iomanip>
 #include <iostream>
 #include <random>
+#include <sstream>
 
 void RandTest() {
     // 随机非负数 伪随机
@@ -12,7 +14,7 @@ void RandTest() {
     std::mt19937 eng(rd());
 
     for (int i = 0; i < 10; i++) {
-        std::cout << e() <<  " ";
+        std::cout << e() << " ";
     }
     std::cout << std::endl;
 
@@ -36,7 +38,7 @@ void RandTest() {
 
     std::cout << "mt19937" << std::endl;
     for (int i = 0; i < 10; i++) {
-        std::cout << eng() <<  " ";
+        std::cout << eng() << " ";
     }
     std::cout << std::endl;
 
@@ -60,5 +62,16 @@ int Rand(int low, int high) {
     std::default_random_engine e(rd());
     std::uniform_int_distribution<int> u(low, high);
     return u(e);
+}
+
+std::string Rand(int low, int high, int len) {
+    std::stringstream ss;
+    std::string rand_suffix;
+    for (int i = 0; i < 10; i++) {
+        ss << std::setw(4) << std::setfill('0') << Rand(0, 1000) << " ";
+        ss >> rand_suffix;
+        std::cout << rand_suffix << std::endl;
+    }
+    return rand_suffix;
 }
 #endif

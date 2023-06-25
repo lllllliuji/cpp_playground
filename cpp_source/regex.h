@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <regex>
-#include <vector>
 #include <string>
+#include <vector>
 
 void Stringsplit(const std::string& str, const std::string& split, std::vector<std::string>& res) {
     // std::regex ws_re("\\s+"); // 正则表达式,匹配空格
@@ -19,10 +19,12 @@ void Stringsplit(const std::string& str, const std::string& split, std::vector<s
 void RegexTest() {
     std::string test_string;
     for (int i = 0; i < 10; i++) {
-        test_string += std::to_string(std::rand()) + "\r\n";
+        test_string += std::to_string(std::rand()) + "-";
     }
+    test_string += std::to_string(std::rand());
+    std::cout << "test string: " << test_string << std::endl;
     std::vector<std::string> strs;
-    Stringsplit(test_string, "\r\n", strs);
+    Stringsplit(test_string, "-", strs);
     for (auto& str : strs) {
         std::cout << str << std::endl;
     }

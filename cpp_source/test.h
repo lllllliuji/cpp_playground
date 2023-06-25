@@ -28,8 +28,9 @@
 // #include "template.h"
 #include "random.h"
 // #include "optional.h"
-#include "flexible_array.h"
 #include "binary_serach.h"
+#include "flexible_array.h"
+#include "gradient_descent.h"
 #include "lru.h"
 
 #endif
