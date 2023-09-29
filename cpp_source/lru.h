@@ -30,8 +30,8 @@ auto LRU<K, V>::Evict() -> bool {
         return false;
     }
     auto item = list_.back();
-    list_.pop_back();
     map_.erase(item.first);
+    list_.pop_back();
     return true;
 }
 
